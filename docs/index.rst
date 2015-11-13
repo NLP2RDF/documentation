@@ -5,8 +5,8 @@ Overview
 
 The NLP Interchange Format (NIF) is an RDF/OWL-based format that aims to achieve interoperability
 between Natural Language Processing (NLP) tools, language resources and annotations. NIF consists of
-specifications, ontologies and software, which are combined under the version identifier
-*"NIF 2.0"*, but are versioned individually.
+specifications, ontologies and software. These documents describe the upcoming *NIF 2.1* release,
+currently under revision by the broader community.
 
 Although the road to complete interoperability is still long, NIF is already successful in providing
 best practices and a solid foundation for the most frequent use cases. This foundation is created
