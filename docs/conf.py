@@ -17,6 +17,8 @@ import sys
 import os
 import shlex
 
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -79,7 +81,7 @@ language = None
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build']
+exclude_patterns = ['_build', '_build_auto']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -289,7 +291,6 @@ texinfo_documents = [
 # Read the Docs Sphinx Theme patch
 # on_rtd is whether we are on readthedocs.org,
 # this line of code grabbed from docs.readthedocs.org
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 if not on_rtd:  # only import and set the theme if we're building docs locally
     import sphinx_rtd_theme
     html_theme = 'sphinx_rtd_theme'
