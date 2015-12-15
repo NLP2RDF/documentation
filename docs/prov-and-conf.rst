@@ -1,5 +1,3 @@
-.. highlight:: sparql
-
 =============================================
 Provenance and Confidence for NIF annotations
 =============================================
@@ -25,13 +23,22 @@ For a running example, assume the following short example sentence::
     nif:endIndex "52"^^xsd:nonNegativeInteger ;
     nif:anchorOf "Apple acquired Metaio, an Augmented Reality company."^^xsd:string .  
 
+.. _sec-comp-prop:
 
+Provenance and Confidence using Companion Properties
+====================================================
+
+Entity Spotting and Linking
+---------------------------
 
 Sending this NIF document to an entity spotting and linking service, e.g. possibly a future revision
 of the `FREME e-Entity DBpeida Spotlight Service`_ could yield and RDF result similar to:
 
-.. literalinclude:: includes/nif21-acquision-companion-properties.ttl
-   :lines: 1-58
+.. _listing-comp-prop-entities:
+
+.. literalinclude:: includes/nif21-acquisition-companion-properties.ttl
+   :lines: 1-61
+           
 .. note::
   The current implementations of FREME services do not produce data as described here, thus also
   ``example`` is used instead of an acutally valid API version number. The discussed RDF data
@@ -112,11 +119,39 @@ current NIF 2.1 Core ontology draft::
   itsrdf:taClassRef nif:confidenceProperty nif:taClassConf ;
     nif:provenanceProperty nif:taClassProv .
 
+Terminology Annotation
+----------------------
+
+In a similar way as presented for named entities information about term recognition and referencing
+can be provided, by APIs like the `FREME e-Terminology Service`_ a possible addtion to the result
+listing in :ref:`the result listing of the previous section <listing-comp-prop-entities>` could be:
+
+.. literalinclude:: includes/nif21-acquisition-companion-properties.ttl
+   :lines: 62-
+
+Using only Generic Provenance and Confidence Properties
+=======================================================
+
+Usage of compation properties allows to offer a default value for each annotation aspect and allows
+two reduce the number of ``nif:AnnotationGroup`` resources that must be synthesized to prevent
+ambiguities. However, they also increase technical complexity for consumption of provenance and
+confidence information. Using exclusively the generic ``nif:provenance`` and ``nif:confidence``
+properties directly simplifies generation and consumption of this information, at the cost of
+additional RDF resources required to express equivalent data. Using only these generic properties to
+express the same annotation as discussed in :ref:`sec-comp-prop`:
+
+
+.. _listing-gen-prop:
+
+.. literalinclude:: includes/nif21-acquisition-generic-properties.ttl
+           
 
 
 
-                    
+           
 .. _FREME e-Entity DBpeida Spotlight Service:
     http://api.freme-project.eu/doc/0.4/api-doc/full.html#!/e-Entity/execute
+.. _FREME e-Terminology Service:
+    http://api-dev.freme-project.eu/doc/api-doc/full.html#!/e-Terminology/e_terminology
 .. _ITSRDF: https://github.com/w3c/itsrdf
-    
+

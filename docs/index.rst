@@ -17,15 +17,15 @@ by:
 
 NIF comprises a set of RDF vocabularies and ontologies, which have stable identifiers, persistent hosting, an open license and a community approved meaning.
 
-NIF is driven by its open and weclome-to-join community project NLP2RDF, consisting of a mailing list, a GitHub Project and a blog web site
+NIF is driven by its open and weclome-to-join community project NLP2RDF, consisting of a mailing list, a GitHub Project and a blog web site.
 
 ..
    Contents:
-
+**Contents:**
+   
 .. toctree::
-    :hidden:
     :maxdepth: 2
 
     prov-and-conf
-    
+   
 * :ref:`genindex`
