@@ -21,27 +21,29 @@ ex:doc_offset_0_5
   nif:anchorOf "Apple"^^xsd:string ;
   nif:referenceContext ex:doc_offset_0_52 ;
   # entity spotting information
-  a nif:EntityOccurrence ;
-  nif:confidence "0.7"^^xsd:decimal ;
-  nif:provenance freme-api:description%2Fe-entity%2Fdbpedia-spotlight%2Fdocuments ;
+  nif:annotationUnit [
+    a nif:EntityOccurrence ;
+    nif:confidence "0.7"^^xsd:decimal ;
+    nif:provenance freme-api:description%2Fe-entity%2Fdbpedia-spotlight%2Fdocuments ;
+  ] ;  
   # primary entity linking result
-  nif:annotationGroup [
+  nif:annotationUnit [
     itsrdf:taIdentRef dbp:Apple_Inc ;
     nif:confidence "0.8"^^xsd:decimal ;
     nif:provenance freme-api:description%2Fe-entity%2Fdbpedia-spotlight%2Fdocuments ;
   ] ;
-  nif:annotationGroup [
+  nif:annotationUnit [
     itsrdf:taClassRef nerd:Organization ;
     nif:confidence "0.95"^^xsd:decimal ;
     nif:provenance freme-api:description%2Fe-entity%2Fdbpedia-spotlight%2Fdocuments ;
   ] ;
 # alternative, less probable entity linking result
-  nif:annotationGroup [
+  nif:annotationUnit [
     itsrdf:taIdentRef dbp:Apple_Bank_for_Savings ;
     nif:confidence "0.3"^^xsd:decimal ;
     nif:provenance freme-api:description%2Fe-entity%2Fdbpedia-spotlight%2Fdocuments 
   ] ;
-  nif:annotationGroup [
+  nif:annotationUnit [
     itsrdf:taClassRef dbpo:Bank ;
     nif:confidence "0.9"^^xsd:decimal ;
     nif:provenance freme-api:description%2Fe-entity%2Fdbpedia-spotlight%2Fdocuments 
@@ -58,12 +60,12 @@ ex:doc_offset_15_21
   nif:confidence "0.95"^^xsd:decimal ;
   nif:provenance freme-api:description%2Fe-entity%2Fdbpedia-spotlight%2Fdocuments ;
   # entity linking result
-  nif:annotationGroup [
+  nif:annotationUnit [
     itsrdf:taIdentRef dbp:Metaio_GmbH ;
     nif:confidence "0.9"^^xsd:decimal ;
     nif:provenance freme-api:description%2Fe-entity%2Fdbpedia-spotlight%2Fdocuments ;
   ] ;
-  nif:annotationGroup [
+  nif:annotationUnit [
     itsrdf:taClassRef dbpo:Company ;
     nif:confidence "0.85"^^xsd:decimal ;
     nif:provenance freme-api:description%2Fe-entity%2Fdbpedia-spotlight%2Fdocuments ;
@@ -80,7 +82,7 @@ ex:doc_offset_26_43
   nif:confidence "0.7"^^xsd:decimal ;
   nif:provenance freme-api:description%2Fe-terminology%2Ftilde ;
   # term linking result
-  nif:annotationGroup [
+  nif:annotationUnit [
     itsrdf:termInfoRef    <https://term.tilde.com/terms/998795> ;
     nif:confidence "0.65"^^xsd:decimal ;
     nif:provenance freme-api:description%2Fe-terminology%2Ftilde ;

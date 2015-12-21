@@ -95,10 +95,10 @@ when assigning the annotation as a rational number between 0 and 1.
 
 Obviously only one property assertion for a specific companion property can be made for the same
 ``nif:String`` resource without causing ambiguity. Thus, whenever several alternative annotations on
-the same aspect are to be expressed, additional ``nif:AnnotationGroup`` resources can be created and
-linked to the ``nif:String`` annotated resource. In the example, such an ``nif:AnnotationGroup`` is
+the same aspect are to be expressed, additional ``nif:AnnotationUnit`` resources can be created and
+linked to the ``nif:String`` annotated resource. In the example, such an ``nif:AnnotationUnit`` is
 used for the alternative, less probable entity link for string ``ex:doc_offset_0_5`` to
-``dbp:Apple_Bank_for_Savings``. The same ``nif:AnnotationGroup`` resource can be (re-)used to host
+``dbp:Apple_Bank_for_Savings``. The same ``nif:AnnotationUnit`` resource can be (re-)used to host
 multiple annotation statements with provenance and confidence via companion properties, as long as
 unequivocalness is ensured.
 
@@ -133,7 +133,7 @@ Using only Generic Provenance and Confidence Properties
 =======================================================
 
 Usage of compation properties allows to offer a default value for each annotation aspect and allows
-two reduce the number of ``nif:AnnotationGroup`` resources that must be synthesized to prevent
+two reduce the number of ``nif:AnnotationUnit`` resources that must be synthesized to prevent
 ambiguities. However, they also increase technical complexity for consumption of provenance and
 confidence information. Using exclusively the generic ``nif:provenance`` and ``nif:confidence``
 properties directly simplifies generation and consumption of this information, at the cost of
@@ -145,8 +145,9 @@ express the same annotation as discussed in :ref:`sec-comp-prop`:
 
 .. literalinclude:: includes/nif21-acquisition-generic-properties.ttl
            
-
-
+.. note::
+  ``nif:confidence`` and ``nif:provenance`` can only be attatched to ``nif:AnnotationUnit``
+  instances, not to ``nif:String`` instances directly.
 
            
 .. _FREME e-Entity DBpeida Spotlight Service:
