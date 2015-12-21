@@ -60,14 +60,14 @@ Accroding to the *companion properties* approach, for each of the used annotatin
 ``nif:TextSpanAnnotation`` subclasses a pair of specific and related subproperties of
 ``nif:provenance`` and ``nif:confidence`` were introduced:
 
-+----------------------+------------------------+------------------------+
-|annotation            |provenance property     |confidence property     |
-|property/class        |                        |                        |
-+======================+========================+========================+
-|nif:TextSpanAnnotation|nif:entityOccurrenceProv|nif:entityOccurrenceConf|
-+----------------------+------------------------+------------------------+
-|itsrdf:taIdentRef     |nif:taIdentProv         |nif:taIdentConf         |
-+----------------------+------------------------+------------------------+
++--------------------+------------------------+------------------------+
+|annotation          |provenance property     |confidence property     |
+|property/class      |                        |                        |
++====================+========================+========================+
+|nif:EntityOccurrence|nif:entityOccurrenceProv|nif:entityOccurrenceConf|
++--------------------+------------------------+------------------------+
+|itsrdf:taIdentRef   |nif:taIdentProv         |nif:taIdentConf         |
++--------------------+------------------------+------------------------+
 
 Provenance properties reference either ``prov:Agent`` or ``prov:Activity`` resources providing
 details on either just the annotator (be it man or machine) or also additionally on the annotation
