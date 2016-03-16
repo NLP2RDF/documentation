@@ -27,6 +27,5 @@ NIF is driven by its open and weclome-to-join community project NLP2RDF, consist
     :maxdepth: 2
 
     prov-and-conf
-    translations
-
+    
 * :ref:`genindex`

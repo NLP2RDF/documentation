@@ -1,4 +1,5 @@
 @prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+@prefix nif-inc: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-incubator#> .
 @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
 @prefix dbp: <http://dbpedia.org/resource/> .
 @prefix isolang: <http://www.lexvo.org/id/iso639-3/> .
@@ -6,13 +7,16 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix ex: <http://example.org/nif-21/translation-berlin#> .
 
+[] a owl:Ontology ;
+  owl:imports nif:, nif-inc:, <http://www.w3.org/2005/11/its/rdf#> .
+
 ex:doc_offset_0_18
   a nif:OffsetBasedString, nif:Context ;
   nif:beginIndex "0"^^xsd:nonNegativeInteger ;
   nif:endIndex "17"^^xsd:nonNegativeInteger ;
   nif:isString "Welcome to Berlin!"^^xsd:string ;
   nif:predLang isolang:eng ;
-  nif:translation ex:trans_de_offset_0_21, ex:trans_es_offset_0_21 .
+  nif-inc:translation ex:trans_de_offset_0_21, ex:trans_es_offset_0_21 .
 
 ex:doc_offset_11_17
   a nif:OffsetBasedString ;
@@ -23,14 +27,14 @@ ex:doc_offset_11_17
   itsrdf:taIdentRef dbp:Berlin .
 
 ex:trans_de_offset_0_21
-  a nif:Translation, nif:Context ;
+  a nif-inc:Translation, nif:Context ;
   nif:beginIndex "0"^^xsd:nonNegativeInteger ;
   nif:endIndex "21"^^xsd:nonNegativeInteger ;
   nif:isString "Willkommen in Berlin!"^^xsd:string ;
   nif:predLang isolang:spa ;
-  nif:wasTranslatedFrom ex:doc_offset_0_18 ;
-  nif:translationProv <http://aksw.org/MarkusAckermann.rdf> ;
-  nif:translationConf "1"^^xsd:decimal .
+  nif-inc:wasTranslatedFrom ex:doc_offset_0_18 ;
+  nif-inc:translationProv <http://aksw.org/MarkusAckermann.rdf> ;
+  nif-inc:translationConf "1"^^xsd:decimal .
   
 ex:trans_de_14_2
   a nif:OffsetBasedString ;
@@ -41,13 +45,13 @@ ex:trans_de_14_2
   itsrdf:taIdentRef dbp:Berlin .
 
 ex:trans_es_offset_0_21
-  a nif:Translation, nif:Context ;
+  a nif-inc:Translation, nif:Context ;
   nif:beginIndex "0"^^xsd:nonNegativeInteger ;
   nif:endIndex "21"^^xsd:nonNegativeInteger ;
   nif:isString "¡Bienvenido a Berlín!"^^xsd:string ;
   nif:predLang isolang:spa ;
-  nif:translationProv <https://translate.google.com> ;
-  nif:translationConf "0.8"^^xsd:decimal .
+  nif-inc:translationProv <https://translate.google.com> ;
+  nif-inc:translationConf "0.8"^^xsd:decimal .
 
 ex:trans_es_14_20
   a nif:OffsetBasedString ;

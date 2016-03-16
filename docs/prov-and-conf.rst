@@ -7,8 +7,8 @@ annotations. This section will present two possible approaches to assign provena
 information to annotations:
 
 * a more compact representation using previously introduced or provided *companion properties*
-* a simpler, but more verbose representation using the generic ``nif:provenance`` and
-  ``nif:confidence`` properties
+* a simpler, but more verbose representation using the generic ``nif-ann:provenance`` and
+  ``nif-ann:confidence`` properties
 
 For a running example, assume the following short example sentence::
 
@@ -37,7 +37,7 @@ of the `FREME e-Entity DBpeida Spotlight Service`_ could yield and RDF result si
 .. _listing-comp-prop-entities:
 
 .. literalinclude:: includes/nif21-acquisition-companion-properties.ttl
-   :lines: 1-61
+   :lines: 5-16,20-69
            
 .. note::
   The current implementations of FREME services do not produce data as described here, thus also
@@ -49,25 +49,27 @@ entities. Each substing resource carries several pieces of annotation informatio
 
 spotting information
   The mere fact that a certain substring has been identified as a (likely) reference
-  to a named entity. This expressed in NIF 2.1 by assigning the ``nif:EnitityOccurrence`` class to
+  to a named entity. This expressed in NIF 2.1 by assigning the ``nif-ann:EnitityOccurrence`` class to
   the substring resource.
 
-entity linking information (Likely) references to Linked Data identifiers for mentioned named
-  entities or classification or referenced enities into one or several categories. For referencing,
-  the ``itsrdf:taIdentRef`` property from `ITSRDF`_ is used.
+entity linking information
+  (Candidate) references to Linked Data identifiers for mentioned named
+  entities or classification or referenced enities into one or several
+  categories. For referencing, the ``itsrdf:taIdentRef`` property from
+  `ITSRDF`_ is used.
   
 Accroding to the *companion properties* approach, for each of the used annotating properties and
-``nif:TextSpanAnnotation`` subclasses a pair of specific and related subproperties of
-``nif:provenance`` and ``nif:confidence`` were introduced:
+``nif-ann:TextSpanAnnotation`` subclasses a pair of specific and related subproperties of
+``nif-ann:provenance`` and ``nif-ann:confidence`` were introduced:
 
-+--------------------+------------------------+------------------------+
-|annotation          |provenance property     |confidence property     |
-|property/class      |                        |                        |
-+====================+========================+========================+
-|nif:EntityOccurrence|nif:entityOccurrenceProv|nif:entityOccurrenceConf|
-+--------------------+------------------------+------------------------+
-|itsrdf:taIdentRef   |nif:taIdentProv         |nif:taIdentConf         |
-+--------------------+------------------------+------------------------+
++------------------------+----------------------------+----------------------------+
+|annotation              |provenance property         |confidence property         |
+|property/class          |                            |                            |
++========================+============================+============================+
+|nif-ann:EntityOccurrence|nif-ann:entityOccurrenceProv|nif-ann:entityOccurrenceConf|
++------------------------+----------------------------+----------------------------+
+|itsrdf:taIdentRef       |nif-ann:taIdentProv         |nif-ann:taIdentConf         |
++------------------------+----------------------------+----------------------------+
 
 Provenance properties reference either ``prov:Agent`` or ``prov:Activity`` resources providing
 details on either just the annotator (be it man or machine) or also additionally on the annotation
@@ -95,29 +97,29 @@ when assigning the annotation as a rational number between 0 and 1.
 
 Obviously only one property assertion for a specific companion property can be made for the same
 ``nif:String`` resource without causing ambiguity. Thus, whenever several alternative annotations on
-the same aspect are to be expressed, additional ``nif:AnnotationUnit`` resources can be created and
-linked to the ``nif:String`` annotated resource. In the example, such an ``nif:AnnotationUnit`` is
-used for the alternative, less probable entity link for string ``ex:doc_offset_0_5`` to
-``dbp:Apple_Bank_for_Savings``. The same ``nif:AnnotationUnit`` resource can be (re-)used to host
-multiple annotation statements with provenance and confidence via companion properties, as long as
-unequivocalness is ensured.
+the same aspect are to be expressed, additional ``nif-ann:AnnotationUnit`` resources can be created
+and linked to the ``nif:String`` annotated resource. In the example, such an
+``nif-ann:AnnotationUnit`` is used for the alternative, less probable entity link for string
+``ex:doc_offset_0_5`` to ``dbp:Apple_Bank_for_Savings``. The same ``nif-ann:AnnotationUnit``
+resource can be (re-)used to host multiple annotation statements with provenance and confidence via
+companion properties, as long as unequivocalness is ensured.
 
 To ensure possibilities to validate such unambiguity and to ensure that provenance and confidence
 information using companion properties is completely machine actionable, explicit links between
 companion properties and their corresponding annotating vocabulary items, as in this excerpt of the
 current NIF 2.1 Core ontology draft::
 
-  nif:EntityOccurrence nif:confidenceProperty nif:entityOccurrenceConf ;
-    nif:provenanceProperty nif:entityOccurrenceProv .
+  nif-ann:EntityOccurrence nif-ann:confidenceProperty nif-ann:entityOccurrenceConf ;
+    nif-ann:provenanceProperty nif-ann:entityOccurrenceProv .
 
-  nif:TermOccurrence nif:confidenceProperty nif:termOccurrenceConf ;
-    nif:provenanceProperty nif:termOccurrenceProv .
+  nif-ann:TermOccurrence nif-ann:confidenceProperty nif-ann:termOccurrenceConf ;
+    nif-ann:provenanceProperty nif-ann:termOccurrenceProv .
 
-  itsrdf:taIdentRef nif:confidenceProperty nif:taIdentConf ;
-    nif:provenanceProperty nif:taIdentProv .
+  itsrdf:taIdentRef nif-ann:confidenceProperty nif-ann:taIdentConf ;
+    nif-ann:provenanceProperty nif-ann:taIdentProv .
 
-  itsrdf:taClassRef nif:confidenceProperty nif:taClassConf ;
-    nif:provenanceProperty nif:taClassProv .
+  itsrdf:taClassRef nif-ann:confidenceProperty nif-ann:taClassConf ;
+    nif-ann:provenanceProperty nif-ann:taClassProv .
 
 Terminology Annotation
 ----------------------
@@ -127,27 +129,28 @@ can be provided, by APIs like the `FREME e-Terminology Service`_ a possible addt
 listing in :ref:`the result listing of the previous section <listing-comp-prop-entities>` could be:
 
 .. literalinclude:: includes/nif21-acquisition-companion-properties.ttl
-   :lines: 62-
+   :lines: 71-
 
-Using only Generic Provenance and Confidence Properties
-=======================================================
+Using Generic Provenance and Confidence Properties
+==================================================
 
 Usage of compation properties allows to offer a default value for each annotation aspect and allows
-two reduce the number of ``nif:AnnotationUnit`` resources that must be synthesized to prevent
+two reduce the number of ``nif-ann:AnnotationUnit`` resources that must be synthesized to prevent
 ambiguities. However, they also increase technical complexity for consumption of provenance and
-confidence information. Using exclusively the generic ``nif:provenance`` and ``nif:confidence``
-properties directly simplifies generation and consumption of this information, at the cost of
-additional RDF resources required to express equivalent data. Using only these generic properties to
-express the same annotation as discussed in :ref:`sec-comp-prop`:
+confidence information. Using exclusively the generic ``nif-ann:provenance`` and
+``nif-ann:confidence`` properties directly simplifies generation and consumption of this
+information, at the cost of additional RDF resources required to express equivalent data. Using only
+these generic properties to express the same annotation as discussed in :ref:`sec-comp-prop`:
 
 
 .. _listing-gen-prop:
 
 .. literalinclude:: includes/nif21-acquisition-generic-properties.ttl
+   :lines: 5-16,20-
            
 .. note::
-  ``nif:confidence`` and ``nif:provenance`` can only be attatched to ``nif:AnnotationUnit``
-  instances, not to ``nif:String`` instances directly.
+  ``nif-ann:confidence`` and ``nif-ann:provenance`` can only be attatched to
+  ``nif-ann:AnnotationUnit`` instances, not to ``nif:String`` instances directly.
 
            
 .. _FREME e-Entity DBpeida Spotlight Service:
