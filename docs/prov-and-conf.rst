@@ -62,14 +62,19 @@ Accroding to the *companion properties* approach, for each of the used annotatin
 ``nif-ann:TextSpanAnnotation`` subclasses a pair of specific and related subproperties of
 ``nif-ann:provenance`` and ``nif-ann:confidence`` were introduced:
 
-+------------------------+----------------------------+----------------------------+
-|annotation              |provenance property         |confidence property         |
-|property/class          |                            |                            |
-+========================+============================+============================+
-|nif-ann:EntityOccurrence|nif-ann:entityOccurrenceProv|nif-ann:entityOccurrenceConf|
-+------------------------+----------------------------+----------------------------+
-|itsrdf:taIdentRef       |nif-ann:taIdentProv         |nif-ann:taIdentConf         |
-+------------------------+----------------------------+----------------------------+
++--------------------------------+------------------------------------+------------------------------------+
+|**annotation property/class**   |**provenance companion property**   |**confidence companion property**   |
++--------------------------------+------------------------------------+------------------------------------+
+|nif-ann:EntityOccurrence        |nif-ann:entityOccurrenceProv        |nif-ann:entityOccurrenceConf        |
++--------------------------------+------------------------------------+------------------------------------+
+|nif-ann:TermOccurrence          |nif-ann:termOccurrenceProv          |nif-ann:termOccurrenceConf          |
++--------------------------------+------------------------------------+------------------------------------+
+|itsrdf:taIdentRef               |nif-ann:taIdentProv                 |nif-ann:taIdentConf                 |
++--------------------------------+------------------------------------+------------------------------------+
+|itsrdf:taClassRef               |nif-ann:taClassProv                 |nif-ann:taClassConf                 |
++--------------------------------+------------------------------------+------------------------------------+
+|itsrdf:termInfoRef              |nif-ann:termInfoProv                |nif-ann:termInfoConf                |
++--------------------------------+------------------------------------+------------------------------------+
 
 Provenance properties reference either ``prov:Agent`` or ``prov:Activity`` resources providing
 details on either just the annotator (be it man or machine) or also additionally on the annotation
@@ -131,6 +136,25 @@ listing in :ref:`the result listing of the previous section <listing-comp-prop-e
 .. literalinclude:: includes/nif21-acquisition-companion-properties.ttl
    :lines: 71-
 
+Relation of NIF 2.1. companion properties to ITSRDF properties
+--------------------------------------------------------------
+
+``itsrdf:taConfidence`` is very similar to both ``nif-ann:taIdentConf`` and ``nif-ann:taClassConf``,
+but is specified to provide a common confidence value for both the link to a concrete entity reference
+and an entity type associated with this entity. Since NIF 2.1 also wanted to be able to express e.g.
+output of general entity spotters that also assign classes to spotted entities, but are unable to
+conclusively disambiguate them [#spot-class-scenario]_, NIF introduced it's own specialised properties.
+
+In cases when NIF 2.1 is actually to be used to describe term linking output from tools in line with
+the ITS premises, ``itsrdf:taConfidence`` and the corresponding ``itsrdf:taAnnotatorRef`` can be use
+alternatively to the NIF 2.1 companion properties. The provenance reference for ``itsrdf:taAnnotatorRef``
+still should be either ``prov:Agent`` or ``prov:Activity``
+
+.. literalinclude:: includes/nif21-itsrdf.ttl
+   :lines: 6-
+
+
+           
 Using Generic Provenance and Confidence Properties
 ==================================================
 
@@ -159,3 +183,10 @@ these generic properties to express the same annotation as discussed in :ref:`se
     http://api-dev.freme-project.eu/doc/api-doc/full.html#!/e-Terminology/e_terminology
 .. _ITSRDF: https://github.com/w3c/itsrdf
 
+.. rubric:: Footnotes
+
+.. [#spot-class-scenario] Think for example for a simple gazeteer-based spotting service. It
+                          can easily spot 'Dresden' and might contain type data associating
+                          occurrences of this string with the category 'pupulated place',
+                          whilst lacking logic to hazard an informed guess whether it's the
+                          city with that name in Germany, the United Kingdom, the US or Canada.
